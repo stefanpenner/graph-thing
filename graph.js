@@ -75,9 +75,21 @@ function equals(value) {
 	return new Equals(value);
 }
 
+function not(matcher) {
+	return new Not(matcher);
+}
+
 function deepEquals(value) {
 	return new DeepEquals(value);
 }
+
+function Not(matcher) {
+	this.matcher = matcher;
+}
+
+Not.prototype.check = function(value) {
+	return !this.matcher.check(value);
+};
 
 function Contains(value) {
 	this.value = value;
