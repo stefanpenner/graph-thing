@@ -134,3 +134,12 @@ plugins.map(function(plugins) {
 query.groupByRoot({
 	id: contains('broccoliPlugin')
 }).sum('stats.time.self');
+
+
+from(graph).groupBy({
+	id: contains(‘broccoliPlugin’)
+}).select({
+	node: GroupedRoot,
+	id: 'id,'
+	totalTime: sum(‘stats.time.self’)
+})
